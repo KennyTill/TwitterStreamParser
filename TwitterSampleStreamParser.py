@@ -3,15 +3,15 @@ from twitter import TwitterStream, OAuth
 import sys
 import json
 
-def run(config, sampleSize = 0):
+def run(config):
     #setting up auth from our config.json file
     auth = OAuth(
         config['token'], config['token_secret'],
         config['consumer_key'], config['consumer_secret']
     )
 
-    #if we want a fixed number of tweets, use this, else leave sampleSize as 0 for ulimited
-    limiter = sampleSize
+    #set limiter in config to cap the number of pulled tweets
+    limiter = config['limiter']
     count = 0
 
 
@@ -23,16 +23,16 @@ def run(config, sampleSize = 0):
     #our stream loop
     for tweet in iterator:
         if 'in_reply_to_status_id' in tweet:
-            if (sampleSize > 0):
+            if limiter > 0:
                 count += 1
                 if count > limiter:
                     return
             #found the key indicating it is a tweet, lets store it into an arbitrary file for now
-            print(tweet)
+            print(tweet['text'])
 
 
 
 #open our json configuration file readonly
 with open ('config.json', 'r') as configuration_file:
     config = json.load(configuration_file)
-run(config, 20)
+run(config)
