@@ -3,8 +3,7 @@ from twitter import TwitterStream, OAuth
 import sys
 import json
 
-
-def run(config, verbose=True, sampleSize = 0):
+def run(config, sampleSize = 0):
     #setting up auth from our config.json file
     auth = OAuth(
         config['token'], config['token_secret'],
@@ -23,18 +22,17 @@ def run(config, verbose=True, sampleSize = 0):
 
     #our stream loop
     for tweet in iterator:
-        if (sampleSize > 0):
-            count += 1
-            if count > limiter:
-                return
-
-        #print items for now, store data later
         if 'in_reply_to_status_id' in tweet:
-            #found the key indicating it is a tweet
-            print('%s' % tweet['user']['screen_name'])
+            if (sampleSize > 0):
+                count += 1
+                if count > limiter:
+                    return
+            #found the key indicating it is a tweet, lets store it into an arbitrary file for now
+            print(tweet)
+
 
 
 #open our json configuration file readonly
 with open ('config.json', 'r') as configuration_file:
     config = json.load(configuration_file)
-run(config)
+run(config, 20)
