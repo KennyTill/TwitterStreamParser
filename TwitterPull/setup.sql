@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS tweets;
 
 CREATE TABLE tweets (
-    tweet_id INTEGER PRIMARY KEY ,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    tweet_id INTEGER,
     tweet_user_id INTEGER,
     tweet_user_screen_name TEXT,
     tweet_user_name TEXT,
