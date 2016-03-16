@@ -1,4 +1,6 @@
 /TwitterPull/config.json
+/TwitterPull/tweet_data.db
+/TwitterPull/__pycache__
 /.idea/
 sample.json
 data.json

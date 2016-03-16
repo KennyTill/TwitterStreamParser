@@ -1,13 +1,11 @@
-CREATE DATABASE IF NOT EXISTS `TwitterItems`;
+DROP TABLE IF EXISTS tweets;
 
-USE `TwitterItems`;
-
-
--- Basic table for now
-CREATE TABLE IF NOT EXISTS `Tweets`(
-    id INTEGER PRIMARY KEY,
-    tweet_text VARCHAR(255),
-    lang VARCHAR(255),
-    location VARCHAR(255)
+CREATE TABLE tweets (
+    tweet_id INTEGER PRIMARY KEY ,
+    tweet_user_id INTEGER,
+    tweet_user_screen_name TEXT,
+    tweet_user_name TEXT,
+    tweet_text TEXT,
+    tweet_location TEXT,
+    tweet_lang TEXT
 );
-
