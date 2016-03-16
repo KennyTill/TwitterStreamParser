@@ -1,6 +1,9 @@
 # Simple data stream of twitter used for pulling data into database
 from twitter import TwitterStream, OAuth
 import json
+import sqlite3
+
+
 
 
 def run(config):
@@ -27,12 +30,17 @@ def run(config):
                 if count > limiter:
                     return
 
-            with open('data.json', 'a+') as data_file:
-                #append comma to json dump, will need to clean up last comma before processing. do it manually for now as it is one character.
-                data_file.write('%s,' % json.dumps(tweet))
+            #Store to sqlite
+
+
+
 
 # open our json configuration file readonly
 with open('config.json', 'r') as configuration_file:
     config = json.load(configuration_file)
 
+# setup section
+
+
+# run section
 run(config)
