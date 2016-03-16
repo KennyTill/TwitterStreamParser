@@ -20,7 +20,7 @@ class StreamClass():
         self.db.commit()
 
     def store_data(self, data):
-        c = self.db.execute('INSERT INTO tweets VALUES (?, ?, ?, ?, ?, ?, ?)', (data['id'], data['user']['id'], data['user']['screen_name'], data['user']['name'], data['text'], data['user']['location'], data['lang']))
+        c = self.db.execute('INSERT INTO tweets (tweet_id, tweet_user_id, tweet_user_screen_name, tweet_user_name, tweet_text, tweet_location, tweet_lang) VALUES (?, ?, ?, ?, ?, ?, ?)', (data['id'], data['user']['id'], data['user']['screen_name'], data['user']['name'], data['text'], data['user']['location'], data['lang']))
         c.close()
         self.db.commit()
 
