@@ -20,12 +20,13 @@ def run(config):
 
     # our stream loop
     for tweet in iterator:
+        # found the key indicating it is a tweet, lets store it into an arbitrary file for now
         if 'in_reply_to_status_id' in tweet:
             if limiter > 0:
                 count += 1
                 if count > limiter:
                     return
-            # found the key indicating it is a tweet, lets store it into an arbitrary file for now
+
             with open('data.json', 'a+') as data_file:
                 #append comma to json dump, will need to clean up last comma before processing. do it manually for now as it is one character.
                 data_file.write('%s,' % json.dumps(tweet))
