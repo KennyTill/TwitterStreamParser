@@ -45,6 +45,7 @@ class StreamClass():
             if 'in_reply_to_status_id' in tweet:
                 if limiter > 0:
                     count += 1
+                    print(count)
                     if count > limiter:
                         return
 
